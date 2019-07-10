@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { SlideshowPage } from '../slideshow/slideshow.page';
-import { DaysAgoPipe } from '../pipes/days-ago.pipe';
 
 @NgModule({
   imports: [
@@ -20,7 +19,7 @@ import { DaysAgoPipe } from '../pipes/days-ago.pipe';
       }
     ])
   ],
-  declarations: [HomePage, SlideshowPage, DaysAgoPipe],
+  declarations: [HomePage, SlideshowPage ],
   entryComponents:[SlideshowPage]
 })
 export class HomePageModule {}
