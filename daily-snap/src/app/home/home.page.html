@@ -13,6 +13,12 @@
 </ion-header>
 
 <ion-content>
+<ion-list lines="none">
+  <ion-item *ngIf="!photoTaken" tappable (click)="takePhoto()">
+    <img src="assets/images/smile.png" alt="">
+  </ion-item>
+</ion-list>
+
   <ion-list lines="none">
     <ion-item-sliding>
 
