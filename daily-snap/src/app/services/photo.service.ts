@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { DataService } from "./data.service";
 import { Platform } from "@ionic/angular";
-import { Plugins, CameraResultType, CameraSource, FilesystemDirectory, Filesystem } from "@capacitor/core"
+import { Plugins, CameraResultType, CameraSource, FilesystemDirectory, Filesystem, CameraOptions } from "@capacitor/core"
 
 const { Camera, FileSystem } = Plugins;
 
@@ -79,7 +79,7 @@ export class PhotoService {
       if (!this.loaded || this.photoTaken) {
         reject('Not allowed to take photo');
       }
-      let options = {
+      let options: CameraOptions = {
         quality: 100,
         allowEditing: false,
         resultType: CameraResultType.Uri,
