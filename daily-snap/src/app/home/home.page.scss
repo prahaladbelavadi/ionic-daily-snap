@@ -1,1 +1,22 @@
 
+ion-list {
+    margin: 0 !important;
+    }
+    ion-title img {
+    max-height: 39px;
+    }
+    ion-item {
+    margin-bottom: 2px;
+    --inner-padding-end: 0px;
+    --padding-start: 0px;
+    img {
+    width: 100%;
+    height: auto;
+    }
+    }
+    ion-badge {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    }
+    
