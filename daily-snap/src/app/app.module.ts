@@ -10,12 +10,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
-import { DaysAgoPipe } from './pipes/days-ago.pipe';
 
 @NgModule({
-  declarations: [AppComponent, DaysAgoPipe],
+  declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    IonicStorageModule.forRoot()
+  ],
   providers: [
     SocialSharing,
     LocalNotifications,

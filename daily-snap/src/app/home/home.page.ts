@@ -4,7 +4,6 @@ import { PhotoService } from '../services/photo.service';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { SlideshowPage } from '../slideshow/slideshow.page';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -26,7 +25,8 @@ export class HomePage implements OnInit {
   }
 
   takePhoto(): void {
-    this.loadingCtrl.create({ content: 'Saving Photo...' }).then((overlay) => {
+    this.loadingCtrl.create({ message: 'Saving Photo...' })
+    .then((overlay) => {
       overlay.present();
 
       this.photoService.takePhoto()
