@@ -3,6 +3,7 @@ import { SimpleAlertService } from '../services/simple-alert.service';
 import { PhotoService } from '../services/photo.service';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SlideshowPage } from '../slideshow/slideshow.page';
 
 @Component({
   selector: 'app-home',
@@ -52,8 +53,7 @@ export class HomePage implements OnInit {
           });
         }, (err) => {
           overlay.dismiss();
-          this.simpleAlert.createAlert('Oops!', err).then((alert) =>
-          {
+          this.simpleAlert.createAlert('Oops!', err).then((alert) => {
             alert.present();
           });
         });
@@ -61,6 +61,18 @@ export class HomePage implements OnInit {
   }
 
   playSlideShow(): void {
+    if (this.photoService.photos.length > 1) {
 
+      this.ModalCtrl.create({
+        component: SlideshowPage
+      }).then((modal) => {
+        modal.present();
+      });
+
+    } else {
+      this.simpleAlert.createAlert('Oops!', 'You need at least two photos before you can play a slideshow.').then((alert) => {
+        alert.present();
+      });
+    }
   }
 }

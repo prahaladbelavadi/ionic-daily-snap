@@ -13,16 +13,16 @@
 </ion-header>
 
 <ion-content>
-<ion-list lines="none">
-  <ion-item *ngIf="!photoTaken" tappable (click)="takePhoto()">
-    <img src="assets/images/smile.png" alt="">
-  </ion-item>
+  <ion-list lines="none">
+    <ion-item *ngIf="!photoTaken" tappable (click)="takePhoto()">
+      <img src="assets/images/smile.png" alt="">
+    </ion-item>
     <ion-item-sliding *ngFor="let photo of photoService.photos">
 
       <ion-item>
-        <img src="photo.path" alt="">
+        <img [src]="photo.path" alt="">
         <ion-badge slot="end" color="light">
-          0 days ago
+          {{photo.dateTaken | daysAgo}} days ago
         </ion-badge>
       </ion-item>
 
