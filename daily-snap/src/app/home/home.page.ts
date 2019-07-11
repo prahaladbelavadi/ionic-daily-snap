@@ -10,7 +10,7 @@ import { SlideshowPage } from '../slideshow/slideshow.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
+  a;
   constructor(
     public photoService: PhotoService,
     private alertCtrl: AlertController,
@@ -31,6 +31,7 @@ export class HomePage implements OnInit {
 
       this.photoService.takePhoto()
         .then((photo) => {
+          this.a = photo;
           overlay.dismiss();
 
           this.alertCtrl.create({

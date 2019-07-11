@@ -87,40 +87,42 @@ export class PhotoService {
       };
       Camera.getPhoto(options).then(
         (photo) => {
-          Filesystem.readFile({
-            path: photo.path
-          })
-            .then((result) => {
-              let date = new Date(),
-                time = date.getTime(),
-                fileName = time + '.jpeg';
-              Filesystem.writeFile({
-                data: result.data,
-                path: fileName,
-                directory: FilesystemDirectory.Data
-              })
-                .then((result) => {
-                  Filesystem.getUri({
-                    directory: FilesystemDirectory.Data,
-                    path: fileName
-                  })
-                    .then((result) => {
-                      console.log(result);
-                      this.createPhoto(fileName,
-                        result.uri.replace('file://', '_capacitor_'));
-                      resolve(result.uri);
-                    }, (err) => {
-                      console.log(err);
-                      reject('Could not find photo in storage');
-                    });
-                }, (err) => {
-                  console.log(err);
-                  reject('Could not write photo to storage');
-                });
-            }, (err) => {
-              console.log(err);
-              reject('Could not read photo data');
-            });
+          resolve(photo.webPath);
+          // console.log(photo)
+          // Filesystem.readFile({
+          //   path: photo.path
+          // })
+          //   .then((result) => {
+          //     let date = new Date(),
+          //       time = date.getTime(),
+          //       fileName = time + '.jpeg';
+          //     Filesystem.writeFile({
+          //       data: result.data,
+          //       path: fileName,
+          //       directory: FilesystemDirectory.Data
+          //     })
+          //       .then((result) => {
+          //         Filesystem.getUri({
+          //           directory: FilesystemDirectory.Data,
+          //           path: fileName
+          //         })
+          //           .then((result) => {
+          //             console.log(result);
+          //             this.createPhoto(fileName,
+          //               result.uri.replace('file://', '_capacitor_'));
+          //             resolve(result.uri);
+          //           }, (err) => {
+          //             console.log(err);
+          //             reject('Could not find photo in storage');
+          //           });
+          //       }, (err) => {
+          //         console.log(err);
+          //         reject('Could not write photo to storage');
+          //       });
+          //   }, (err) => {
+          //     console.log(err, "fdsdfsdf");
+          //     reject('Could not read photo data');
+          //   });
         }, (err) => {
           console.log(err);
           reject('Could not take photo');

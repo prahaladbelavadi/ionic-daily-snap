@@ -13,6 +13,8 @@
 </ion-header>
 
 <ion-content>
+
+  <img [src]="a" alt="">
   <ion-list lines="none">
     <ion-item *ngIf="!photoTaken" tappable (click)="takePhoto()">
       <img src="assets/images/smile.png" alt="">
