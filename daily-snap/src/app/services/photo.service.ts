@@ -53,6 +53,25 @@ export class PhotoService {
         }
       }
     });
+
+    this.dataService.getData().then((photos) => {
+      console.log(photos);
+
+      if (photos != null) {
+        this.photos = photos;
+      }
+
+      if (this.photos.length > 0) {
+        let today = new Date();
+
+        if (this.photos[0].dateTaken.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0)) {
+          this.photoTaken = true;
+          this.photoTaken = false; //testing: allow taking more than 1 photo per day
+        }
+      }
+
+      this.loaded = true;
+    })
   }
 
   takePhoto(): Promise<any> {
@@ -150,7 +169,7 @@ export class PhotoService {
   }
 
   save(): void {
-
+    this.dataService.save(this.photos);
   }
 }
 

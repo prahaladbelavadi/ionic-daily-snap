@@ -21,11 +21,43 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.photoService.load();
   }
 
-  takePhoto() {
+  takePhoto(): void {
+    this.loadingCtrl.create({ content: 'Saving Photo...' }).then((overlay) => {
+      overlay.present();
 
+      this.photoService.takePhoto()
+        .then((photo) => {
+          overlay.dismiss();
+
+          this.alertCtrl.create({
+            header: 'Nice one!',
+            message: 'You\'ve take your photo for today, would you also like to share it ?',
+            buttons: [
+              {
+                text: "No, Thanks"
+              },
+              {
+                text: "share",
+                handler: () => {
+                  console.log(photo);
+                  this.socialSharing.share('i\'m take a selfie every day with #Snapaday', null, photo, null)
+                }
+              }
+            ]
+          }).then((prompt) => {
+            prompt.present();
+          });
+        }, (err) => {
+          overlay.dismiss();
+          this.simpleAlert.createAlert('Oops!', err).then((alert) =>
+          {
+            alert.present();
+          });
+        });
+    });
   }
 
   playSlideShow(): void {
